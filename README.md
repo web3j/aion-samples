@@ -54,7 +54,5 @@ This task is bound to the project `build` task, so it'll be triggered automatica
      0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36
      ```
 
-2. Run the command `./gradlew build`. This will generate the contract wrapper in the project structure under 
-   `build/generated/source/web3j-aion/main/java`, and run the project test against your given `NODE_ENDPOINT`.
-
+2. Run the command `./gradlew build`. This will run the project test against your given `NODE_ENDPOINT`.
 
