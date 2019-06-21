@@ -1,0 +1,70 @@
+plugins {
+    id 'maven'
+    id 'java'
+    id 'idea'
+}
+
+group 'org.web3j.aion'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    // web3j-aion
+    mavenLocal()
+    
+    // Default
+    mavenCentral()
+
+    maven {
+        // web3j snapshots
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        // Aion dependencies
+        url "$rootProject.projectDir/lib"
+    }
+}
+
+dependencies {
+    implementation "org.web3j.aion:web3j-aion-avm:1.0.0-SNAPSHOT"
+    implementation "org.web3j.aion:web3j-aion-codegen:1.0.0-SNAPSHOT"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir {
+                "$project.buildDir/generated/source/web3j-aion/main/java"
+            }
+        }
+    }
+}
+
+task generateContractWrappers(type: JavaExec, group: 'aion', dependsOn: 'clean') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'org.web3j.aion.codegen.AionGeneratorMain'
+    
+    args '--abiFile', "$projectDir/HelloAvm.abi",
+            '--binFile', "$projectDir/HelloAvm.jar",
+            '--outputDir', "$project.buildDir/generated/source/web3j-aion/main/java",
+            '--package', 'org.web3j.aion.samples.generated',
+            '--targetVm', 'AVM'
+}
+
+compileJava {
+    source "$project.buildDir/generated/source/web3j-aion/main/java"
+}
+
+compileTestJava {
+    source "$project.buildDir/generated/source/web3j-aion/main/java"
+    dependsOn 'generateContractWrappers'
+}
+
