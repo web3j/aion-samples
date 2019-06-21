@@ -32,10 +32,14 @@ This task is bound to the project `build` task, so it'll be triggered automatica
 
 1. Open a console and export the environment properties:
 
-   * `NODE_ENDPOINT`: The Aion node URL, e.g. 
-   `https://aion.api.nodesmith.io/v1/mastery/jsonrpc?apiKey=7b1d449f07774200bc1000a8b0eb1a9e`
+   * `NODE_ENDPOINT`: The Aion node URL, e.g.
+     ```
+     https://aion.api.nodesmith.io/v1/mastery/jsonrpc?apiKey=7b1d449f07774200bc1000a8b0eb1a9e
+     ```
    * `PRIVATE_KEY`: The Aion account private key, e.g. 
-   `0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36`
+     ```
+     0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36
+     ```
 
 2. Run the command `./gradlew build`. This will generate the contract wrapper in the project structure under 
    `build/generated/source/web3j-aion/main/java`, and run the project test against your given `NODE_ENDPOINT`.
