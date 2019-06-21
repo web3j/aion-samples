@@ -27,7 +27,7 @@ git clone git@gitlab.com:web3j/web3j-aion.git
 
 cd web3j-aion
 
-./graldew publishToMavenLocal
+./gradlew publishToMavenLocal
 ```
 
 ## Generate `HelloAvm` contract wrapper
