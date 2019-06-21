@@ -3,9 +3,9 @@ web3j Aion integration samples
 
 In this project you will learn to generate the code and call an AVM Aion smart contract with Java.
 
-To *call* and *transact* with an AVM contract from Java, you will need to generate its 
+To call and transact with an AVM contract from Java, you will need to generate its 
 [web3j contract wrapper](https://docs.web3j.io/smart_contracts.html#deploying-and-interacting-with-smart-contracts).
-This is done with a specific web3j toolset for Aion, and requires the contract's 
+This is done with a specific web3j toolset for Aion which requires the contract's 
 [Abstract Binary Interface (ABI)](HelloAvm.abi).
 
 If you also want to *deploy* the contract, you will need the [Java Archive (JAR)](HelloAvm.jar) 
@@ -18,9 +18,22 @@ In this project we will use the sample [ABI](HelloAvm.abi) and [JAR](HelloAvm.ja
 tutorial to generate the web3j contract wrapper, deploy it and interact with it using a 
 [JUnit test](src/test/java/org/web3j/aion/samples/HelloAvmTest.java).
 
+## Requirements
+
+Git clone and publish to Maven local the [web3j-aion](https://gitlab.com/web3j/web3j-aion) repository.
+
+```
+git clone git@gitlab.com:web3j/web3j-aion.git
+
+cd web3j-aion
+
+./graldew publishToMavenLocal
+```
+
 ## Generate `HelloAvm` contract wrapper
 
-The [Gradle build file](build.gradle) includes a task for wrapper generation:
+The [Gradle build file](build.gradle) includes a task for wrapper generation.
+To run it, go back to the samples project directory and run the command:
 
 ```bash
 ./gradlew generateContractWrappers
