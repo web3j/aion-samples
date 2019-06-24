@@ -12,6 +12,7 @@ import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.TransactionManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class HelloAvmTest {
 
@@ -31,8 +32,15 @@ class HelloAvmTest {
         final HelloAvm helloContract = HelloAvm.deploy(aion, manager, AionGasProvider.INSTANCE).send();
 
         // Call getString 
-        final TransactionReceipt receipt = helloContract.getString().send();
+        String result = helloContract.call_getString().send();
+        assertEquals("Hello AVM", result);
 
-        assertEquals("Hello AVM", receipt.getBlockHash());
+        // Call setString 
+        final long millis = System.currentTimeMillis();
+        TransactionReceipt receipt = helloContract.send_setString("Hello AVM at " + millis).send();
+        assertTrue(receipt.isStatusOK());
+
+        result = helloContract.call_getString().send();
+        assertEquals("Hello AVM at " + millis, result);
     }
 }
