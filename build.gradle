@@ -24,6 +24,10 @@ repositories {
         // Aion dependencies
         url "$rootProject.projectDir/lib"
     }
+    maven {
+        // web3j imported dependencies
+        url 'https://dl.bintray.com/ethereum/maven/'
+    }
 }
 
 dependencies {
