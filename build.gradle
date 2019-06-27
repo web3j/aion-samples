@@ -31,8 +31,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.web3j.aion:web3j-aion-avm:1.0.0-SNAPSHOT"
-    implementation "org.web3j.aion:web3j-aion-codegen:1.0.0-SNAPSHOT"
+    implementation "org.web3j:web3j-aion-avm:0.1.0-SNAPSHOT"
+    implementation "org.web3j:web3j-aion-codegen:0.1.0-SNAPSHOT"
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
