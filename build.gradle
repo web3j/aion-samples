@@ -5,17 +5,13 @@ plugins {
 }
 
 group 'org.web3j.aion'
-version '1.0.0-SNAPSHOT'
+version '0.1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
 repositories {
-    // web3j-aion
-    mavenLocal()
-    
-    // Default
+    jcenter()
     mavenCentral()
-
     maven {
         // web3j snapshots
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
