@@ -27,6 +27,7 @@ repositories {
 }
 
 dependencies {
+    implementation "org.web3j:core:4.4.0-SNAPSHOT"
     implementation "org.web3j:web3j-aion-avm:0.1.0-SNAPSHOT"
     implementation "org.web3j:web3j-aion-codegen:0.1.0-SNAPSHOT"
 
