@@ -41,6 +41,9 @@ To run it, go back to the samples project directory and run the command:
 
 This task is bound to the project `build` task, so it'll be triggered automatically during a project build.
 
+Depending on your JDK version, it might output some warnings about Java modules; you can ignore them.
+
+
 ## Build the project
 
 1. Open a console and export the environment properties:
