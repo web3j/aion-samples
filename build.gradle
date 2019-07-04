@@ -53,7 +53,6 @@ sourceSets {
         }
     }
 }
-}
 
 task generateContractWrappers(type: JavaExec, group: 'aion', dependsOn: 'clean') {
     classpath = sourceSets.main.runtimeClasspath
