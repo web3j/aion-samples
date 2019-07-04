@@ -2,12 +2,13 @@ plugins {
     id 'maven'
     id 'java'
     id 'idea'
+    id 'com.adarshr.test-logger' version '1.7.0'
 }
 
 group 'org.web3j.aion'
 version '0.1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     jcenter()
@@ -20,23 +21,27 @@ repositories {
         // Aion dependencies
         url "$rootProject.projectDir/lib"
     }
-    maven {
-        // web3j imported dependencies
-        url 'https://dl.bintray.com/ethereum/maven/'
-    }
 }
 
 dependencies {
+    implementation "org.aion:avm-rt:0.0.0"
+    implementation "org.aion:avm-api:0.0.0"
+    implementation "org.aion:avm-tooling:0.0.0"
+    implementation "org.aion:avm-userlib:0.0.0"
+    
     implementation "org.web3j:core:4.4.0-SNAPSHOT"
     implementation "org.web3j:web3j-aion-avm:0.1.0-SNAPSHOT"
     implementation "org.web3j:web3j-aion-codegen:0.1.0-SNAPSHOT"
+    
+    implementation "ch.qos.logback:logback-classic:1.2.3"
+    
+    runtimeOnly "com.github.schnitker.logmanager:logmgr-logback:1.0.2"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+    testImplementation "junit:junit:4.12"
 }
 
-tasks.withType(Test) {
-    useJUnitPlatform()
+test {
+    testLogging.showStandardStreams = true
 }
 
 sourceSets {
@@ -48,24 +53,26 @@ sourceSets {
         }
     }
 }
+}
 
 task generateContractWrappers(type: JavaExec, group: 'aion', dependsOn: 'clean') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'org.web3j.aion.codegen.AionGeneratorMain'
     
-    args '--abiFile', "$projectDir/HelloAvm.abi",
-            '--binFile', "$projectDir/HelloAvm.jar",
+    args '--abiFile', "$projectDir/hello-world-avm/target/hello-world-avm-0.1.0-SNAPSHOT.abi",
+            '--binFile', "$projectDir/hello-world-avm/target/hello-world-avm-0.1.0-SNAPSHOT.jar",
             '--outputDir', "$project.buildDir/generated/source/web3j-aion/main/java",
-            '--package', 'org.web3j.aion.samples.generated',
-            '--targetVm', 'AVM'
+            '--package', 'org.web3j.aion.samples.generated'
 }
 
 compileJava {
     source "$project.buildDir/generated/source/web3j-aion/main/java"
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 }
 
 compileTestJava {
     source "$project.buildDir/generated/source/web3j-aion/main/java"
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     dependsOn 'generateContractWrappers'
 }
 
