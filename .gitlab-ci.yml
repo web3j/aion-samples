@@ -1,3 +1,12 @@
+variables:
+  NODE_ENDPOINT: https://aion.api.nodesmith.io/v1/mastery/jsonrpc?apiKey=7b1d449f07774200bc1000a8b0eb1a9e
+  PRIVATE_KEY: 0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36
+
+before_script:
+  - cd hello-world-avm
+  - ./mvnw install
+  - cd ..
+
 build:
   image: adoptopenjdk/openjdk11:jdk-11.0.3_7-alpine
   stage: build
