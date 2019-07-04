@@ -1,6 +1,7 @@
 package org.web3j.aion.samples;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 import org.web3j.aion.VirtualMachine;
 import org.web3j.aion.crypto.Ed25519KeyPair;
 import org.web3j.aion.protocol.Aion;
@@ -11,36 +12,33 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.TransactionManager;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-class HelloAvmTest {
+public class HelloAvmTest {
 
     private static String NODE_ENDPOINT = System.getenv("NODE_ENDPOINT");
     private static String PRIVATE_KEY = System.getenv("PRIVATE_KEY");
 
     private final Aion aion = Aion.build(new HttpService(NODE_ENDPOINT));
 
-    private final TransactionManager manager = new AionTransactionManager(aion,
-            new Ed25519KeyPair(PRIVATE_KEY),
-            VirtualMachine.AVM);
+    private final TransactionManager manager = new AionTransactionManager(
+            aion, new Ed25519KeyPair(PRIVATE_KEY), VirtualMachine.AVM
+    );
 
     @Test
-    void deployAndCallContract() throws Exception {
+    public void deployAndCallContract() throws Exception {
 
         // Deploy the contract 
         final HelloAvm helloContract = HelloAvm.deploy(aion, manager, AionGasProvider.INSTANCE).send();
 
         // Call getString 
         String result = helloContract.call_getString().send();
-        assertEquals("Hello AVM", result);
+        Assert.assertEquals("Hello AVM", result);
 
         // Call setString 
         final long millis = System.currentTimeMillis();
         TransactionReceipt receipt = helloContract.send_setString("Hello AVM at " + millis).send();
-        assertTrue(receipt.isStatusOK());
+        Assert.assertTrue(receipt.isStatusOK());
 
         result = helloContract.call_getString().send();
-        assertEquals("Hello AVM at " + millis, result);
+        Assert.assertEquals("Hello AVM at " + millis, result);
     }
 }
