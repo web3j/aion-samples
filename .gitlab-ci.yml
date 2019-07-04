@@ -4,6 +4,7 @@ variables:
 
 before_script:
   - cd hello-world-avm
+  - ./mvnw initialize
   - ./mvnw install
   - cd ..
 

@@ -20,9 +20,10 @@ using a [JUnit test](src/test/java/org/web3j/aion/samples/HelloAvmTest.java).
 
 ### Compile the Aion contract
 
-From the project root, change to the `hello-world-avm` directory and compile the project:
+From the project root, change to the `hello-world-avm` directory, initialize and install the project:
 ```bash
 cd hello-world-avm
+./mvnw initialize
 ./mvnw install
 ```
 In the `target` folder you should find the ABI and JAR files used in the following step. 
