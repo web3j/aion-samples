@@ -70,7 +70,7 @@ To interact with the contract using the generated contract wrapper, take a look 
 [`HelloAvmTest`](src/test/java/org/web3j/aion/samples/HelloAvmTest.java) class:
 ```java
 // Deploy the contract 
-final HelloAvm helloContract = HelloAvm.deploy(aion, manager, AionGasProvider.INSTANCE).send();
+HelloAvm helloContract = HelloAvm.deploy(aion, manager, AionGasProvider.INSTANCE).send();
 
 // Call getString 
 String result = helloContract.call_getString().send();
@@ -80,15 +80,16 @@ It is quite straight forward, but before running it you need to do a previous st
 
 ### Set the environment variables
 
-Open a console and export the environment properties with `export VAR_NAME=...`:
+Open a console and export the environment properties with `export VAR_NAME=...` 
+(use single quotes to avoid potential issues):
 
-   * `NODE_ENDPOINT`: Set a valid Aion node URL from Mastery or a local instance, e.g.
+   * `NODE_ENDPOINT`: Set a valid Aion node URL from Mastery or a local instance, e.g.:
      ```
-     https://aion.api.nodesmith.io/v1/mastery/jsonrpc?apiKey=7b1d449f07774200bc1000a8b0eb1a9e
+     'https://aion.api.nodesmith.io/v1/mastery/jsonrpc?apiKey=7b1d449f07774200bc1000a8b0eb1a9e'
      ```
-   * `PRIVATE_KEY`: Set a valid Aion private key from the previous node endpoint, e.g. 
+   * `PRIVATE_KEY`: Set a valid Aion private key from the used network, e.g. from Mastery: 
      ```
-     0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36
+     '0x4776895c43f77676cdec51a6c92d2a1bacdf16ddcc6e7e07ab39104b42e1e52608fe2bf5757b8261d4937f13b5815448f2144f9c1409a3fab4c99ca86fff8a36'
      ```
 
 ### Run the tests and build
