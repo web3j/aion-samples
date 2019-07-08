@@ -23,8 +23,7 @@ using a [JUnit test](src/test/java/org/web3j/aion/samples/HelloAvmTest.java).
 From the project root, change to the `hello-world-avm` directory, initialize and install the project:
 ```bash
 cd hello-world-avm
-./mvnw initialize
-./mvnw install
+./mvnw initialize install
 ```
 In the `target` folder you should find the ABI and JAR files used in the following step. 
 The ABI file should be a text file containing the contract class name, its constructor and other function definitions:
