@@ -76,7 +76,16 @@ HelloAvm helloContract = HelloAvm.deploy(aion, manager, AionGasProvider.INSTANCE
 String result = helloContract.call_getString().send();
 Assert.assertEquals("Hello AVM", result);
 ```
-It is quite straight forward, but before running it you need to do a previous step.
+It is quite straight forward, but before running it you need to set the proper environment 
+variables for the test to run.
+
+You could also load the contract from an existing address using one of the the static load methods:
+```java
+HelloAvm helloContract = HelloAvm.load(
+        "0xa0a7cddb89bd3186142545629efa6cb3401a77160e36f26a86d703e0bd478bc1", 
+        aion, manager, AionGasProvider.INSTANCE
+).send();
+```
 
 ### Set the environment variables
 
