@@ -11,26 +11,27 @@ repositories {
     jcenter()
     mavenCentral()
     maven {
-        // web3j snapshots
-        url 'https://oss.sonatype.org/content/repositories/snapshots/'
-    }
-    maven {
         // Aion dependencies
         url "$rootProject.projectDir/lib"
     }
 }
 
+ext {
+    aionVersion = '1.4'
+    web3jVersion = '4.5.0-SNAPSHOT'
+}
+
 dependencies {
-    implementation "org.aion:avm-api:1.4"
-    implementation "org.aion:avm-tooling:1.4"
-    implementation "org.aion:avm-userlib:1.4"
-    
-    implementation "org.web3j:core:4.4.0-SNAPSHOT"
-    implementation "org.web3j:web3j-aion-avm:0.1.0-SNAPSHOT"
-    implementation "org.web3j:web3j-aion-codegen:0.1.0-SNAPSHOT"
-    
+    implementation "org.aion:avm-api:$aionVersion"
+    implementation "org.aion:avm-tooling:$aionVersion"
+    implementation "org.aion:avm-userlib:$aionVersion"
+
+    implementation "org.web3j:core:$web3jVersion"
+    implementation "org.web3j.aion:web3j-aion-avm:$version"
+    implementation "org.web3j.aion:web3j-aion-codegen:$version"
+
     implementation "ch.qos.logback:logback-classic:1.2.3"
-    
+
     runtimeOnly "com.github.schnitker.logmanager:logmgr-logback:1.0.2"
 
     testImplementation "junit:junit:4.12"
@@ -53,7 +54,7 @@ sourceSets {
 task generateContractWrappers(type: JavaExec, group: 'aion', dependsOn: 'clean') {
     classpath = sourceSets.main.runtimeClasspath
     main = 'org.web3j.aion.codegen.AionGeneratorMain'
-    
+
     args '--abiFile', "$projectDir/hello-world-avm/target/hello-world-avm-${version}.abi",
             '--binFile', "$projectDir/hello-world-avm/target/hello-world-avm-${version}.jar",
             '--outputDir', "$project.buildDir/generated/source/web3j-aion/main/java",
