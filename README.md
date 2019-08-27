@@ -46,8 +46,8 @@ task generateContractWrappers(type: JavaExec, group: 'aion', dependsOn: 'clean')
     classpath = sourceSets.main.runtimeClasspath
     main = 'org.web3j.aion.codegen.AionGeneratorMain'
 
-    args '--abiFile', "$projectDir/hello-world-avm/target/hello-world-avm-0.1.0-SNAPSHOT.abi",
-            '--binFile', "$projectDir/hello-world-avm/target/hello-world-avm-0.1.0-SNAPSHOT.jar",
+    args '--abiFile', "$projectDir/hello-world-avm/target/hello-world-avm-${version}.abi",
+            '--binFile', "$projectDir/hello-world-avm/target/hello-world-avm-${version}.jar",
             '--outputDir', "$project.buildDir/generated/source/web3j-aion/main/java",
             '--package', 'org.web3j.aion.samples.generated'
 }
