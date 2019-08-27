@@ -1,5 +1,5 @@
-web3j Aion integration samples
-==============================
+Samples for web3j integration with Aion Network
+===============================================
 
 In this project you will learn to generate the code and call an AVM Aion smart contract with Java.
 
