@@ -18,7 +18,7 @@ repositories {
 
 ext {
     aionVersion = '1.4'
-    web3jVersion = '4.5.0-SNAPSHOT'
+    web3jVersion = '4.5.0'
 }
 
 dependencies {
